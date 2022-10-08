@@ -2,6 +2,8 @@ package com.serapercel.navigationcomponent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.serapercel.navigationcomponent.databinding.BottomNavSayfaBinding
@@ -33,8 +35,21 @@ class MainActivity : AppCompatActivity() {
         // Drawer Navigation Ekleme
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
         NavigationUI.setupWithNavController(binding.navigationView, navHostFragment.navController)
 
+        binding.toolbar.title = "Başlık"
+
+        val toggle = ActionBarDrawerToggle(this, binding.drawer, binding.toolbar, 0, 0)
+        binding.drawer.addDrawerListener(toggle)
+        toggle.syncState()
+
+    }
+
+    override fun onBackPressed() {
+        if (binding.drawer.isDrawerOpen(GravityCompat.START)){
+            binding.drawer.closeDrawer(GravityCompat.START)
+        }else{
+            super.onBackPressed()
+        }
     }
 }
