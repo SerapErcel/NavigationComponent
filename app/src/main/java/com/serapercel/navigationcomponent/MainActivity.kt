@@ -2,6 +2,7 @@ package com.serapercel.navigationcomponent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.NavHostFragment
@@ -43,8 +44,14 @@ class MainActivity : AppCompatActivity() {
         binding.drawer.addDrawerListener(toggle)
         toggle.syncState()
 
+        // Drawer Navigation Header eklenmesi ve düzeltilmesi
+        val baslik = binding.navigationView.inflateHeaderView(R.layout.navigation_baslik)
+        val textViewBaslik = baslik.findViewById(R.id.textViewBaslik) as TextView
+        textViewBaslik.text= "Merhaba"
+
     }
 
+    //Geri tusu ile kapanmayi duzeltme
     override fun onBackPressed() {
         if (binding.drawer.isDrawerOpen(GravityCompat.START)){
             binding.drawer.closeDrawer(GravityCompat.START)
