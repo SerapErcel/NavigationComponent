@@ -5,23 +5,36 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.serapercel.navigationcomponent.databinding.BottomNavSayfaBinding
+import com.serapercel.navigationcomponent.databinding.DrawerSayfaBinding
 
-class MainActivity : AppCompatActivity() {
-    /*  ----- FRAGMENT -----
+/*  ----- FRAGMENT -----
     Activity moduler bolumudur
     Bir Activity birden fazla fragment calistirabilir
      */
-    private lateinit var binding: BottomNavSayfaBinding
+
+class MainActivity : AppCompatActivity() {
+    // private lateinit var binding: BottomNavSayfaBinding
+    private lateinit var binding: DrawerSayfaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        binding = BottomNavSayfaBinding.inflate(layoutInflater)
+        //binding = BottomNavSayfaBinding.inflate(layoutInflater)
+        binding = DrawerSayfaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment =
+        // Bottom Navigation Bar Ekleme
+        /* val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
 
         NavigationUI.setupWithNavController(binding.bottomNav, navHostFragment.navController)
+         */
+
+        // Drawer Navigation Ekleme
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        NavigationUI.setupWithNavController(binding.navigationView, navHostFragment.navController)
+
     }
 }
